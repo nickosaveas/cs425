@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS faculty CASCADE;
 DROP TABLE IF EXISTS enroll CASCADE;
 DROP TABLE IF EXISTS book_checkout CASCADE;
 
+----------------------------------------------------------------------
+
 CREATE TABLE book
 		(
 			bookid       int,
@@ -14,6 +16,14 @@ CREATE TABLE book
 			PRIMARY KEY  (bookid)
 		);
 
+DELETE FROM book;
+
+INSERT INTO book VALUES ('1', 'Introduction of Algorithms', '84.66', '4');
+INSERT INTO book VALUES ('2', 'Database System Concepts', '74.99', '5');
+INSERT INTO book VALUES ('3', 'Stochastic Calculus for Finance I', '41.02', '3');
+INSERT INTO book VALUES ('4', 'Stochastic Calculus for Finance II', '55.22', '3');
+
+-------------------------------------------------------------------------------------
 CREATE TABLE student
 		(
 			studentid    int,
@@ -21,6 +31,16 @@ CREATE TABLE student
 			gpa          numeric(3,0),
 			PRIMARY KEY  (studentid)
 		);
+		
+DELETE FROM student;
+
+INSERT INTO student VALUES ('1', 'Tom', '3.3');
+INSERT INTO student VALUES ('2', 'John', '3.8');
+INSERT INTO student VALUES ('3', 'Mary', '3.0');
+INSERT INTO student VALUES ('4', 'Kris', '3.6');
+INSERT INTO student VALUES ('5', 'Alex', '3.5');
+
+---------------------------------------------------------------------------------
 		
 CREATE TABLE faculty
 		(
@@ -41,7 +61,17 @@ CREATE TABLE course
 						on DELETE CASCADE,
 			FOREIGN KEY   (texkbookid) REFERENCES book
 						on DELETE CASCADE
-		);		
+		);
+		
+DELETE FROM course;
+
+INSERT INTO course VALUES ('1', 'Algorithms', '1' ,'1');
+INSERT INTO course VALUES ('2', 'DB Organization', '2' ,'2');
+INSERT INTO course VALUES ('3', 'Advanced DB Organization', '3' ,'2');
+INSERT INTO course VALUES ('4', 'Math Finance I', '1' ,'3');
+INSERT INTO course VALUES ('5', 'Math Finance II', '4' ,'4');
+
+---------------------------------------------------------------------
 		
 CREATE TABLE enroll
 		(
@@ -66,29 +96,12 @@ CREATE TABLE book_checkout
 						on DELETE CASCADE
 		);
 		
-DELETE FROM book;
-DELETE FROM course;
-DELETE FROM student;
+
+
 DELETE FROM faculty;
 DELETE FROM enroll;
 DELETE FROM book_checkout;
 
-INSERT INTO book VALUES ('1', 'Introduction of Algorithms', '84.66', '4');
-INSERT INTO book VALUES ('2', 'Database System Concepts', '74.99', '5');
-INSERT INTO book VALUES ('3', 'Stochastic Calculus for Finance I', '41.02', '3');
-INSERT INTO book VALUES ('4', 'Stochastic Calculus for Finance II', '55.22', '3');
-
-INSERT INTO course VALUES ('1', 'Algorithms', '1' ,'1');
-INSERT INTO course VALUES ('2', 'DB Organization', '2' ,'2');
-INSERT INTO course VALUES ('3', 'Advanced DB Organization', '3' ,'2');
-INSERT INTO course VALUES ('4', 'Math Finance I', '1' ,'3');
-INSERT INTO course VALUES ('5', 'Math Finance II', '4' ,'4');
-
-INSERT INTO student VALUES ('1', 'Tom', '3.3');
-INSERT INTO student VALUES ('2', 'John', '3.8');
-INSERT INTO student VALUES ('3', 'Mary', '3.0');
-INSERT INTO student VALUES ('4', 'Kris', '3.6');
-INSERT INTO student VALUES ('5', 'Alex', '3.5');
 
 INSERT INTO faculty VALUES ('1', 'James', '70000');
 INSERT INTO faculty VALUES ('2', 'Sarah', '60000');
