@@ -66,7 +66,7 @@ CREATE TABLE course
 			textbookid    int,
 			PRIMARY KEY   (courseid),
 			FOREIGN KEY   (instructorid) REFERENCES faculty on DELETE CASCADE,
-			FOREIGN KEY   (texkbookid) REFERENCES book on DELETE CASCADE
+			FOREIGN KEY   (textbookid) REFERENCES book on DELETE CASCADE
 		);
 		
 DELETE FROM course;
