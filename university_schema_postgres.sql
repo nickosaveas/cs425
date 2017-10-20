@@ -78,12 +78,6 @@ INSERT INTO book VALUES ('2', 'Database System Concepts', '74.99', '5');
 INSERT INTO book VALUES ('3', 'Stochastic Calculus for Finance I', '41.02', '3');
 INSERT INTO book VALUES ('4', 'Stochastic Calculus for Finance II', '55.22', '3');
 
-INSERT INTO course VALUES ('1', 'Algorithms', '1' ,'1');
-INSERT INTO course VALUES ('2', 'DB Organization', '2' ,'2');
-INSERT INTO course VALUES ('3', 'Advanced DB Organization', '3' ,'2');
-INSERT INTO course VALUES ('4', 'Math Finance I', '1' ,'3');
-INSERT INTO course VALUES ('5', 'Math Finance II', '4' ,'4');
-
 INSERT INTO student VALUES ('1', 'Tom', '3.3');
 INSERT INTO student VALUES ('2', 'John', '3.8');
 INSERT INTO student VALUES ('3', 'Mary', '3.0');
@@ -95,6 +89,12 @@ INSERT INTO faculty VALUES ('2', 'Sarah', '60000');
 INSERT INTO faculty VALUES ('3', 'Jay', '80000');
 INSERT INTO faculty VALUES ('4', 'Rachel', '70000');
 INSERT INTO faculty VALUES ('5', 'Paul', '85000');
+
+INSERT INTO course VALUES ('1', 'Algorithms', '1' ,'1');
+INSERT INTO course VALUES ('2', 'DB Organization', '2' ,'2');
+INSERT INTO course VALUES ('3', 'Advanced DB Organization', '3' ,'2');
+INSERT INTO course VALUES ('4', 'Math Finance I', '1' ,'3');
+INSERT INTO course VALUES ('5', 'Math Finance II', '4' ,'4');
 
 INSERT INTO enroll VALUES ('1', '1');
 INSERT INTO enroll VALUES ('1', '2');
