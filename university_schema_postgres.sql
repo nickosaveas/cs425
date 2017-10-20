@@ -77,34 +77,18 @@ INSERT INTO course VALUES ('3', 'Advanced DB Organization', '3' ,'2');
 INSERT INTO course VALUES ('4', 'Math Finance I', '1' ,'3');
 INSERT INTO course VALUES ('5', 'Math Finance II', '4' ,'4');
 
----------------------------------------------------------------------
+--------------------------------------------------------------------------
 		
 CREATE TABLE enroll
 		(
 			studentid    int,
 			courseid     int,
 			PRIMARY KEY  (studentid, courseid),
-			FOREIGN KEY  (studentid) REFERENCES student
-						on DELETE CASCADE
-			FOREIGN KEY  (courseid) REFERENCES course
-						on DELETE CASCADE
-		);
-
-CREATE TABLE book_checkout
-		(
-			checkout_date  date,
-			bookid         int,
-			studentid      int,
-			PRIMARY KEY    (bookid, studentid),
-			FOREIGN KEY    (bookid) REFERENCES book
-						on DELETE CASCADE
-			FOREIGN KEY    (studentid) REFERENCES student
-						on DELETE CASCADE
+			FOREIGN KEY  (studentid) REFERENCES student on DELETE CASCADE
+			FOREIGN KEY  (courseid) REFERENCES course on DELETE CASCADE
 		);
 		
-
 DELETE FROM enroll;
-DELETE FROM book_checkout;
 
 INSERT INTO enroll VALUES ('1', '1');
 INSERT INTO enroll VALUES ('1', '2');
@@ -112,6 +96,23 @@ INSERT INTO enroll VALUES ('2', '1');
 INSERT INTO enroll VALUES ('4', '3');
 INSERT INTO enroll VALUES ('4', '4');
 INSERT INTO enroll VALUES ('5', '5');
+
+------------------------------------------------------------------------------------------
+
+CREATE TABLE book_checkout
+		(
+			checkout_date  date,
+			bookid         int,
+			studentid      int,
+			PRIMARY KEY    (bookid, studentid),
+			FOREIGN KEY    (bookid) REFERENCES book on DELETE CASCADE
+			FOREIGN KEY    (studentid) REFERENCES student on DELETE CASCADE
+		);
+		
+
+
+DELETE FROM book_checkout;
+
 
 INSERT INTO book_checkout VALUES ('2017-08-29', '1', '1');
 INSERT INTO book_checkout VALUES ('2017-09-02', '4', '4');
