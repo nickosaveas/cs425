@@ -13,19 +13,6 @@ CREATE TABLE book
 			total_copies int,
 			PRIMARY KEY  (bookid)
 		);
-		
-CREATE TABLE course
-		(
-			courseid 	  int,
-			title         varchar(50),
-			instructorid  int,
-			textbookid    int,
-			PRIMARY KEY   (courseid),
-			FOREIGN KEY   (instructorid) REFERENCES faculty
-						on DELETE CASCADE,
-			FOREIGN KEY   (textbookid) REFERENCES book
-						on DELETE CASCADE
-		);
 
 CREATE TABLE student
 		(
@@ -41,6 +28,19 @@ CREATE TABLE faculty
 			name 		 varchar(25),
 			salary       numeric(8,0),
 			PRIMARY KEY  (facultyid)
+		);
+		
+CREATE TABLE course
+		(
+			courseid 	  int,
+			title         varchar(50),
+			instructorid  int,
+			textbookid    int,
+			PRIMARY KEY   (courseid),
+			FOREIGN KEY   (instructorid) REFERENCES faculty
+						on DELETE CASCADE,
+			FOREIGN KEY   (textbookid) REFERENCES book
+						on DELETE CASCADE
 		);
 		
 CREATE TABLE enroll
