@@ -50,6 +50,14 @@ CREATE TABLE faculty
 			PRIMARY KEY  (facultyid)
 		);
 		
+DELETE FROM faculty;
+
+INSERT INTO faculty VALUES ('1', 'James', '70000');
+INSERT INTO faculty VALUES ('2', 'Sarah', '60000');
+INSERT INTO faculty VALUES ('3', 'Jay', '80000');
+INSERT INTO faculty VALUES ('4', 'Rachel', '70000');
+INSERT INTO faculty VALUES ('5', 'Paul', '85000');
+		
 CREATE TABLE course
 		(
 			courseid 	  int,
@@ -57,10 +65,8 @@ CREATE TABLE course
 			instructorid  int,
 			textbookid    int,
 			PRIMARY KEY   (courseid),
-			FOREIGN KEY   (instructorid) REFERENCES faculty
-						on DELETE CASCADE,
-			FOREIGN KEY   (texkbookid) REFERENCES book
-						on DELETE CASCADE
+			FOREIGN KEY   (instructorid) REFERENCES faculty on DELETE CASCADE,
+			FOREIGN KEY   (texkbookid) REFERENCES book on DELETE CASCADE
 		);
 		
 DELETE FROM course;
@@ -97,17 +103,8 @@ CREATE TABLE book_checkout
 		);
 		
 
-
-DELETE FROM faculty;
 DELETE FROM enroll;
 DELETE FROM book_checkout;
-
-
-INSERT INTO faculty VALUES ('1', 'James', '70000');
-INSERT INTO faculty VALUES ('2', 'Sarah', '60000');
-INSERT INTO faculty VALUES ('3', 'Jay', '80000');
-INSERT INTO faculty VALUES ('4', 'Rachel', '70000');
-INSERT INTO faculty VALUES ('5', 'Paul', '85000');
 
 INSERT INTO enroll VALUES ('1', '1');
 INSERT INTO enroll VALUES ('1', '2');
