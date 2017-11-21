@@ -90,7 +90,7 @@ CREATE TABLE Flight_Seat
 	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (seatClass_ID, name) REFERENCES Seat_Class
+FOREIGN KEY (seatClass_ID, name) REFERENCES Seat_Class
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
@@ -106,7 +106,7 @@ CREATE TABLE Flight_Path
 	FOREIGN KEY (departure_iata) REFERENCES Airport
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (destination_iata) REFERENCES Airport
+FOREIGN KEY (destination_iata) REFERENCES Airport
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );
@@ -139,11 +139,11 @@ CREATE TABLE Flight
 	schedule_ID 		varchar(50),
 	maxSeats_firstclass int,
 	maxSeat_economy     int,
-	PRIMARY KEY (AirlineID, flightNum, date, schedule_ID)
+	PRIMARY KEY (AirlineID, flightNum, date, schedule_ID),
 	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (schedule_ID) REFERENCES Flight_Schedule
+FOREIGN KEY (schedule_ID) REFERENCES Flight_Schedule
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
@@ -166,10 +166,10 @@ CREATE TABLE Customer
 	FOREIGN KEY (iata_hm_airport) REFERENCES Airport
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
-	FOREIGN KEY (address1, zip1) REFERENCES Address
+FOREIGN KEY (address1, zip1) REFERENCES Address
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
-	FOREIGN KEY (address2, zip2) REFERENCES Address
+FOREIGN KEY (address2, zip2) REFERENCES Address
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
@@ -186,7 +186,7 @@ CREATE TABLE Booking
 	FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (AirlineID) REFERENCES Airline
+FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );
@@ -204,10 +204,10 @@ CREATE TABLE Booked_Seat
 	name_midInt		varchar(1),
 	price			numeric(10, 2),
 	PRIMARY KEY (email_address, AirlineID, flightNum, date, seatID, price),
-	FOREIGN KEY (email_address) REFERENCES Customer
+FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (AirlineID) REFERENCES Airline
+FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
 );
@@ -225,7 +225,7 @@ CREATE TABLE Credit_Card
 	FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY (payment_address, payment_zip) REFERENCES Address
+FOREIGN KEY (payment_address, payment_zip) REFERENCES Address
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
