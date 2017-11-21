@@ -70,8 +70,8 @@ CREATE TABLE Seat_Class
 	seatClass_ID	varchar(5),
 	name			varchar(50),
 	PRIMARY KEY (seatClass_ID, name),
-	CHECK (seatClass_ID = 'F') OR (seatClass_ID = 'E'),
-	CHECK (name = 'First Class') OR (name = 'Economy')
+	CHECK seatClass_ID in ('F', 'E'),
+	CHECK name in ('First Class', 'Economy')
 );
 
 -- done
