@@ -52,7 +52,7 @@ CREATE TABLE Airport
 	country			 varchar(50),
 	city			 varchar(50),
 	state			 varchar(25),
-	PRIMARY KEY IATA_airportCode
+	PRIMARY KEY (IATA_airportCode)
 );
 
 -- done
@@ -61,8 +61,8 @@ CREATE TABLE Airline
 	AirlineID		varchar(5),
 	name 			varchar(100),
 	country_origin 	varchar(50),
-	PRIMARY KEY AirlineID
-)
+	PRIMARY KEY (AirlineID)
+);
 
 -- done
 CREATE TABLE Seat_Class
@@ -72,7 +72,7 @@ CREATE TABLE Seat_Class
 	PRIMARY KEY (seatClass_ID, name),
 	CHECK (seatClass_ID = 'F') OR (seatClass_ID = 'E'),
 	CHECK (name = 'First Class') OR (name = 'Economy')
-)
+);
 
 -- done
 -- If an airline is deleted then delete all flight info
@@ -87,13 +87,13 @@ CREATE TABLE Flight_Seat
 	name			varchar(50),
 	seatNum 		varchar(5),
 	PRIMARY KEY (AirlineID, seat_ID, seatClass_ID),
-	FOREIGN KEY AirlineID REFERENCES Airline
+	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	FOREIGN KEY (seatClass_ID, name) REFERENCES Seat_Class
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
-)
+);
 	
 -- done
 -- If an airport is deleted then delete all flight info
@@ -103,13 +103,13 @@ CREATE TABLE Flight_Path
 	departure_iata 	 varchar(5),
 	destination_iata varchar(5),
 	PRIMARY KEY (departure_iata, destination_iata),
-	FOREIGN KEY departure_iata REFERENCES Airport
+	FOREIGN KEY (departure_iata) REFERENCES Airport
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY destination_iata REFERENCES Airport
+	FOREIGN KEY (destination_iata) REFERENCES Airport
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-)
+);
 
 -- done
 -- if a scheduled flight suddenly loses a flight path 
@@ -121,10 +121,11 @@ CREATE TABLE Flight_Schedule
 	destination_iata varchar(5),
 	depart_time 	 time,
 	arrival_time 	 time,
-	PRIMARY KEY schedule_ID,
+	PRIMARY KEY (schedule_ID),
 	FOREIGN KEY (departure_iata, destination_iata) REFERENCES Flight_Path
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
+);
 
 -- done
 -- If an airline is deleted then delete all flight info
@@ -139,13 +140,13 @@ CREATE TABLE Flight
 	maxSeats_firstclass int,
 	maxSeat_economy     int,
 	PRIMARY KEY (AirlineID, flightNum, date, schedule_ID)
-	FOREIGN KEY AirlineID REFERENCES Airline
+	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY schedule_ID REFERENCES Flight_Schedule
+	FOREIGN KEY (schedule_ID) REFERENCES Flight_Schedule
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
-)
+);
 
 -- done
 -- If customer has airport deleted then set NULL
@@ -161,8 +162,8 @@ CREATE TABLE Customer
 	address2		varchar(100),
 	zip2			varchar(9),
 	iata_hm_airport	varchar(3),
-	PRIMARY KEY email_address,
-	FOREIGN KEY iata_hm_airport REFERENCES Airport
+	PRIMARY KEY (email_address),
+	FOREIGN KEY (iata_hm_airport) REFERENCES Airport
 		ON DELETE SET NULL
 		ON UPDATE CASCADE,
 	FOREIGN KEY (address1, zip1) REFERENCES Address
@@ -171,7 +172,7 @@ CREATE TABLE Customer
 	FOREIGN KEY (address2, zip2) REFERENCES Address
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
-)
+);
 
 -- done
 CREATE TABLE Booking
@@ -182,13 +183,13 @@ CREATE TABLE Booking
 	date 			date,
 	seatID			varchar(20),
 	PRIMARY KEY (email_address, AirlineID, flightNum, date, seatID),
-	FOREIGN KEY email_address REFERENCES Customer
+	FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY AirlineID REFERENCES Airline
+	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-)
+);
 
 -- done
 CREATE TABLE Booked_Seat
@@ -203,13 +204,13 @@ CREATE TABLE Booked_Seat
 	name_midInt		varchar(1),
 	price			numeric(10, 2),
 	PRIMARY KEY (email_address, AirlineID, flightNum, date, seatID, price),
-	FOREIGN KEY email_address REFERENCES Customer
+	FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
-	FOREIGN KEY AirlineID REFERENCES Airline
+	FOREIGN KEY (AirlineID) REFERENCES Airline
 		ON DELETE CASCADE
 		ON UPDATE CASCADE
-)
+);
 
 -- done
 CREATE TABLE Credit_Card
@@ -220,11 +221,11 @@ CREATE TABLE Credit_Card
 	email_address	varchar(100),
 	payment_address varchar(100),
 	payment_zip		varchar(9),
-	PRIMARY KEY card_number,
-	FOREIGN KEY email_address REFERENCES Customer
+	PRIMARY KEY (card_number),
+	FOREIGN KEY (email_address) REFERENCES Customer
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	FOREIGN KEY (payment_address, payment_zip) REFERENCES Address
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
-)
+);
